@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status App</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#4facfe,#8e44ad);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:15px;
+}
+
+.container{
+    width:100%;
+    max-width:420px;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:22px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#6a11cb;
+}
+
+.input-box{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    background:#6a11cb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2575fc;
+}
+
+.note{
+    margin-top:20px;
+    text-align:center;
+    font-size:13px;
+    color:#555;
+}
+
+.hidden{
+    display:none;
+}
+
+.details p{
+    margin:10px 0;
+    font-size:16px;
+}
+
+.drive-btn{
+    margin-top:18px;
+}
+
+.logout{
+    margin-top:10px;
+    background:#d32f2f;
+}
+
+.logout:hover{
+    background:#b71c1c;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LOGIN PAGE -->
+    <div class="card" id="loginPage">
+
+        <h2>Login</h2>
+
+        <div class="input-box">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Enter Username">
+        </div>
+
+        <div class="input-box">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter Password">
+        </div>
+
+        <button onclick="login()">Login</button>
+
+        <div class="note">
+            Use first 4 letters of my name (small letter) as <strong>Username</strong> and last 4 digits of my mobile number as <strong>Password</strong>.
+        </div>
+
+    </div>
+
+
+    <!-- SECOND PAGE -->
+    <div class="card hidden" id="homePage">
+
+        <h2>Welcome</h2>
+
+        <div class="details">
+            <p> ഹായ്...... </p>
+                      <p> വ്യൂ ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത് ഓപ്പൺ ആയി വരുന്ന ഫോൾഡറിലെ വീഡിയോ അല്ലെങ്കിൽ ഫോട്ടോ ഓപ്പൺ ആക്കി നോക്കു</p>
+        </div>
+
+        <button class="drive-btn" onclick="openDriveFolder()">
+            View
+        </button>
+
+        <button class="logout" onclick="logout()">
+            Logout
+        </button>
+
+        <div class="note">
+            Thank you
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// --------------------------------
+// GOOGLE FORM SUBMIT URL
+// --------------------------------
+const GOOGLE_FORM_URL =
+"https://docs.google.com/forms/d/e/1FAIpQLScpqtWuT6imFQWPpVEuDWO3AIukyPew7eQZcuY4BNNMQU1fOA/formResponse";
+
+
+// --------------------------------
+// GOOGLE FORM FIELD IDs
+// Replace with your real IDs
+// --------------------------------
+const USERNAME_ENTRY = "entry.1112834539";
+const PASSWORD_ENTRY = "entry.374512369";
+const TIME_ENTRY = "entry.2145518782";
+
+
+// --------------------------------
+// DUMMY GOOGLE DRIVE FOLDER
+// --------------------------------
+const DRIVE_FOLDER =
+"https://drive.google.com/drive/folders/1mITdmmyP_-WbTHZwPsdsaKCGXqpmqo24?usp=drive_link";
+
+
+function login(){
+
+    const username =
+    document.getElementById("username").value.trim();
+
+    const password =
+    document.getElementById("password").value.trim();
+
+    // Save to Google Form
+    submitToGoogleForm(username,password);
+
+    // Login validation
+    if(username === "sree" &&
+       password === "3449"){
+
+        document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+        document
+        .getElementById("homePage")
+        .classList.remove("hidden");
+
+    }
+    else{
+        alert("Invalid Username or Password");
+    }
+}
+
+
+function submitToGoogleForm(username,password){
+
+    const formData = new FormData();
+
+    formData.append(
+        USERNAME_ENTRY,
+        username
+    );
+
+    formData.append(
+        PASSWORD_ENTRY,
+        password
+    );
+
+    formData.append(
+        TIME_ENTRY,
+        new Date().toLocaleString()
+    );
+
+    fetch(GOOGLE_FORM_URL,{
+        method:"POST",
+        mode:"no-cors",
+        body:formData
+    })
+    .then(()=>console.log("Saved"))
+    .catch(err=>console.log(err));
+}
+
+
+function openDriveFolder(){
+    window.open(DRIVE_FOLDER,"_blank");
+}
+
+function logout(){
+    location.reload();
+}
+
+</script>
+
+</body>
+</html>

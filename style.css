@@ -1,0 +1,213 @@
+/* ==========================
+   GLOBAL SETTINGS
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:15px;
+    background: linear-gradient(
+        135deg,
+        #4facfe,
+        #8e44ad
+    );
+}
+
+
+/* ==========================
+   MAIN CONTAINER
+========================== */
+
+.container{
+    width:100%;
+    max-width:420px;
+}
+
+
+/* ==========================
+   CARD DESIGN
+========================== */
+
+.card{
+    background:#ffffff;
+    padding:25px;
+    border-radius:25px;
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.2);
+}
+
+
+/* ==========================
+   HEADINGS
+========================== */
+
+h1, h2{
+    text-align:center;
+    color:#6a11cb;
+    margin-bottom:20px;
+}
+
+
+/* ==========================
+   INPUT AREA
+========================== */
+
+.input-box{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-size:15px;
+    font-weight:bold;
+    color:#444;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus{
+    border-color:#6a11cb;
+    box-shadow:
+        0 0 10px
+        rgba(106,17,203,0.2);
+}
+
+
+/* ==========================
+   BUTTON DESIGN
+========================== */
+
+button{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    color:#fff;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+
+/* Login Button */
+button{
+    background:
+        linear-gradient(
+            135deg,
+            #6a11cb,
+            #2575fc
+        );
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+
+/* Drive Button */
+.drive-btn{
+    margin-top:20px;
+}
+
+
+/* Logout Button */
+.logout{
+    margin-top:12px;
+    background:
+        linear-gradient(
+            135deg,
+            #ff416c,
+            #ff4b2b
+        );
+}
+
+
+/* ==========================
+   DETAILS SECTION
+========================== */
+
+.details{
+    margin-top:10px;
+}
+
+.details p{
+    margin:12px 0;
+    padding:12px;
+    background:#f5f5f5;
+    border-radius:10px;
+    font-size:16px;
+    color:#333;
+}
+
+
+/* ==========================
+   FOOTER NOTE
+========================== */
+
+.note{
+    margin-top:20px;
+    text-align:center;
+    font-size:13px;
+    color:#666;
+    line-height:1.5;
+}
+
+
+/* ==========================
+   HIDE ELEMENT
+========================== */
+
+.hidden{
+    display:none;
+}
+
+
+/* ==========================
+   MOBILE RESPONSIVE
+========================== */
+
+@media(max-width:480px){
+
+    .card{
+        padding:20px;
+        border-radius:20px;
+    }
+
+    h1, h2{
+        font-size:24px;
+    }
+
+    input{
+        font-size:15px;
+        padding:13px;
+    }
+
+    button{
+        font-size:15px;
+        padding:13px;
+    }
+
+    .details p{
+        font-size:15px;
+    }
+}
